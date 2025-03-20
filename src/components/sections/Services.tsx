@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Mic, Headphones, MusicNote, BookOpen, PenTool, Sparkles } from "lucide-react";
+import { Mic, Headphones, Music, BookOpen, PenTool, Sparkles } from "lucide-react";
 
 const Services = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -23,7 +23,7 @@ const Services = () => {
     {
       title: "Original Compositions",
       description: "Custom musical pieces composed for specific needs, whether for film, advertising, or personal projects.",
-      icon: MusicNote,
+      icon: Music,
       color: "from-gold-400 to-gold-600",
       link: "#contact"
     },
