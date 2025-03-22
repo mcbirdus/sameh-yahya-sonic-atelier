@@ -1,5 +1,5 @@
 
-import { Music } from "lucide-react";
+import { Music, Facebook, Youtube, Phone } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -23,6 +23,11 @@ const Footer = () => {
       { name: "Privacy Policy", href: "#" },
       { name: "Terms of Service", href: "#" },
     ],
+    social: [
+      { name: "youtube", icon: Youtube, href: "https://www.youtube.com/@Sameh_Yahya" },
+      { name: "facebook", icon: Facebook, href: "https://www.facebook.com/MOHAtairov" },
+      { name: "whatsapp", icon: Phone, href: "https://wa.me/201207189915" }
+    ]
   };
 
   return (
@@ -44,14 +49,16 @@ const Footer = () => {
               Bridging musical traditions through masterful performances and compositions that transcend cultural boundaries.
             </p>
             <div className="flex gap-4">
-              {['facebook', 'twitter', 'instagram', 'youtube'].map((social) => (
+              {navigation.social.map((item) => (
                 <a
-                  key={social}
-                  href={`#${social}`}
+                  key={item.name}
+                  href={item.href}
                   className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
-                  aria-label={`Follow on ${social}`}
+                  aria-label={`Follow on ${item.name}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <i className={`fab fa-${social}`}></i>
+                  <item.icon className="h-4 w-4" />
                 </a>
               ))}
             </div>

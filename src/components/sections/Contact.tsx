@@ -1,5 +1,5 @@
 
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Youtube } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
 import NewsletterForm from "@/components/forms/NewsletterForm";
 
@@ -14,15 +14,21 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      details: "+201207189915",
+      link: "tel:+201207189915"
     },
     {
       icon: MapPin,
       title: "Location",
-      details: "New York, NY, USA",
+      details: "Egypt - Cairo",
       link: "#"
     }
+  ];
+
+  const socialLinks = [
+    { name: "youtube", icon: Youtube, href: "https://www.youtube.com/@Sameh_Yahya" },
+    { name: "facebook", icon: Facebook, href: "https://www.facebook.com/MOHAtairov" },
+    { name: "whatsapp", icon: Phone, href: "https://wa.me/201207189915" }
   ];
 
   const services = [
@@ -75,14 +81,16 @@ const Contact = () => {
             <div className="glass-panel p-6">
               <h3 className="font-medium text-lg mb-4">Follow Sameh</h3>
               <div className="flex gap-3">
-                {['facebook', 'twitter', 'instagram', 'youtube'].map((social) => (
+                {socialLinks.map((social) => (
                   <a
-                    key={social}
-                    href={`#${social}`}
+                    key={social.name}
+                    href={social.href}
                     className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
-                    aria-label={`Follow on ${social}`}
+                    aria-label={`Follow on ${social.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <i className={`fab fa-${social}`}></i>
+                    <social.icon className="h-5 w-5" />
                   </a>
                 ))}
               </div>
