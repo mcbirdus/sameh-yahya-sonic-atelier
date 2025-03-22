@@ -29,7 +29,7 @@ const Hero = () => {
         
         {/* Main Heading */}
         <h1 className={`text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 max-w-4xl transition-all duration-700 delay-150 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-          <span className="block leading-tight">Crafting Melodies Across</span>
+          <span className="block leading-tight">Crafting101 Melodies Across</span>
           <span className="block leading-tight">
             <span className="text-gradient">Arabic</span> and <span className="text-gradient">Turkish</span> Traditions
           </span>
