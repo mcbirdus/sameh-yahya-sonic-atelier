@@ -1,5 +1,5 @@
 
-import { Music, Facebook, Youtube, Phone } from "lucide-react";
+import { Music, Facebook, Youtube, MessageSquare } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,14 +19,10 @@ const Footer = () => {
       { name: "Music Lessons", href: "#services" },
       { name: "Arrangement Services", href: "#services" },
     ],
-    legal: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
-    ],
     social: [
       { name: "youtube", icon: Youtube, href: "https://www.youtube.com/@Sameh_Yahya" },
       { name: "facebook", icon: Facebook, href: "https://www.facebook.com/MOHAtairov" },
-      { name: "whatsapp", icon: Phone, href: "https://wa.me/201207189915" }
+      { name: "whatsapp", icon: MessageSquare, href: "https://wa.me/201207189915" }
     ]
   };
 
@@ -117,21 +113,10 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* Bottom section */}
-        <div className="border-t border-border pt-6 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-sm text-muted-foreground mb-4 md:mb-0">
+        {/* Bottom section - removed legal links */}
+        <div className="border-t border-border pt-6 flex justify-center">
+          <div className="text-sm text-muted-foreground">
             © {currentYear} Sameh Yahya. All rights reserved.
-          </div>
-          <div className="flex gap-6">
-            {navigation.legal.map((item) => (
-              <a 
-                key={item.name} 
-                href={item.href} 
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
           </div>
         </div>
       </div>

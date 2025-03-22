@@ -64,8 +64,8 @@ const Navbar = () => {
           </div>
         </a>
 
-        {/* Desktop Menu */}
-        <nav className={`${isMobile ? 'hidden' : 'flex'} items-center space-x-8`}>
+        {/* Desktop Menu - only visible on large screens (above 1100px) */}
+        <nav className={`hidden xl:flex items-center space-x-8`}>
           {menuItems.map((item) => (
             <a
               key={item.title}
@@ -84,19 +84,17 @@ const Navbar = () => {
           </a>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        {isMobile && (
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <button 
-              onClick={toggleMenu}
-              className="p-2 text-foreground hover:text-primary transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-        )}
+        {/* Mobile Menu Toggle - visible on screens smaller than 1100px */}
+        <div className="flex items-center gap-4 xl:hidden">
+          <ThemeToggle />
+          <button 
+            onClick={toggleMenu}
+            className="p-2 text-foreground hover:text-primary transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
