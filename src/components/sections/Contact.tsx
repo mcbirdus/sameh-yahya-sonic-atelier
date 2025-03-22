@@ -1,5 +1,4 @@
-
-import { Mail, Phone, MapPin, Facebook, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Youtube, MessageSquare } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
 import NewsletterForm from "@/components/forms/NewsletterForm";
 
@@ -14,7 +13,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: "+201207189915",
+      details: "+20 120 718 9915",
       link: "tel:+201207189915"
     },
     {
@@ -28,7 +27,7 @@ const Contact = () => {
   const socialLinks = [
     { name: "youtube", icon: Youtube, href: "https://www.youtube.com/@Sameh_Yahya" },
     { name: "facebook", icon: Facebook, href: "https://www.facebook.com/MOHAtairov" },
-    { name: "whatsapp", icon: Phone, href: "https://wa.me/201207189915" }
+    { name: "whatsapp", icon: MessageSquare, href: "https://wa.me/201207189915" }
   ];
 
   const services = [

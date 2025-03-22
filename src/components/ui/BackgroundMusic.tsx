@@ -3,20 +3,33 @@ import { useState, useRef, useEffect } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 interface BackgroundMusicProps {
-  audioSrc: string;
+  playlistSrcs?: string[];
   autoplay?: boolean;
 }
 
-const BackgroundMusic = ({ audioSrc, autoplay = true }: BackgroundMusicProps) => {
+const BackgroundMusic = ({ 
+  playlistSrcs = ["/clarniet.mp3", "/turkish.mp3", "/bayat.mp3"], 
+  autoplay = true 
+}: BackgroundMusicProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     // Create audio element
-    audioRef.current = new Audio(audioSrc);
-    audioRef.current.loop = true;
+    audioRef.current = new Audio(playlistSrcs[currentTrackIndex]);
     audioRef.current.volume = 0.3;
+
+    // Handle track ended event to play next track
+    const handleTrackEnded = () => {
+      const nextIndex = (currentTrackIndex + 1) % playlistSrcs.length;
+      setCurrentTrackIndex(nextIndex);
+    };
+
+    if (audioRef.current) {
+      audioRef.current.addEventListener('ended', handleTrackEnded);
+    }
 
     // Browser policies typically require user interaction before playing audio
     const handleUserInteraction = () => {
@@ -36,6 +49,7 @@ const BackgroundMusic = ({ audioSrc, autoplay = true }: BackgroundMusicProps) =>
     return () => {
       // Clean up
       if (audioRef.current) {
+        audioRef.current.removeEventListener('ended', handleTrackEnded);
         audioRef.current.pause();
         audioRef.current = null;
       }
@@ -43,7 +57,18 @@ const BackgroundMusic = ({ audioSrc, autoplay = true }: BackgroundMusicProps) =>
       document.removeEventListener("touchstart", handleUserInteraction);
       document.removeEventListener("keydown", handleUserInteraction);
     };
-  }, [audioSrc, autoplay]);
+  }, [playlistSrcs, currentTrackIndex, autoplay]);
+
+  // When current track changes, load and play the new track
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.src = playlistSrcs[currentTrackIndex];
+      
+      if (isPlaying) {
+        playAudio();
+      }
+    }
+  }, [currentTrackIndex, playlistSrcs]);
 
   // Auto-attempt play when user has interacted
   useEffect(() => {

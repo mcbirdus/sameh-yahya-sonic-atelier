@@ -8,8 +8,7 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 import BackgroundMusic from "@/components/ui/BackgroundMusic";
 
-// Import using URL to prevent build errors with audio files
-const backgroundMusicUrl = "/clarniet.mp3";
+const musicPlaylist = ["/clarniet.mp3", "/turkish.mp3", "/bayat.mp3"];
 
 const Index = () => {
   return (
@@ -22,7 +21,7 @@ const Index = () => {
         <About />
         <Contact />
       </main>
-      <BackgroundMusic audioSrc={backgroundMusicUrl} autoplay={true} />
+      <BackgroundMusic playlistSrcs={musicPlaylist} autoplay={true} />
       <Footer />
     </div>
   );
