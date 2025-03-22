@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Play, ChevronDown, Music2 } from "lucide-react";
+import { Play, Music2 } from "lucide-react";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -61,12 +61,6 @@ const Hero = () => {
           <div className="music-bar h-14 animate-music-wave-3"></div>
           <div className="music-bar h-7 animate-music-wave-4"></div>
           <div className="music-bar h-10 animate-music-wave-1"></div>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-float">
-          <span className="text-sm text-muted-foreground mb-2">Scroll Down</span>
-          <ChevronDown className="h-6 w-6 text-primary" />
         </div>
       </div>
       

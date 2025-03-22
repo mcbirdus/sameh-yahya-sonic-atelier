@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Music } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isMobile = useIsMobile();
 
   const menuItems = [
     { title: "Home", href: "#home" },
@@ -63,7 +65,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className={`${isMobile ? 'hidden' : 'flex'} items-center space-x-8`}>
           {menuItems.map((item) => (
             <a
               key={item.title}
@@ -83,24 +85,35 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <div className="flex md:hidden items-center gap-4">
-          <ThemeToggle />
-          <button 
-            onClick={toggleMenu}
-            className="p-2 text-foreground hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+        {isMobile && (
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <button 
+              onClick={toggleMenu}
+              className="p-2 text-foreground hover:text-primary transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu */}
       <div 
         className={`fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } md:hidden flex flex-col justify-center`}
+        } flex flex-col justify-center`}
       >
+        {/* X Button to Close Menu */}
+        <button 
+          onClick={closeMenu}
+          className="absolute top-6 right-6 p-2 text-foreground hover:text-primary transition-colors"
+          aria-label="Close menu"
+        >
+          <X className="h-8 w-8" />
+        </button>
+        
         <nav className="flex flex-col items-center space-y-8 p-8">
           {menuItems.map((item) => (
             <a
