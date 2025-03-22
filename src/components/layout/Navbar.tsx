@@ -103,7 +103,8 @@ const Navbar = () => {
       <div 
         className={`fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } flex flex-col justify-center overflow-y-auto max-h-screen`}
+        } ${isMenuOpen ? "h-full" : ""}`}
+        style={{ height: isMenuOpen ? '100vh' : '0', overflowY: 'auto' }}
       >
         {/* X Button to Close Menu */}
         <button 
@@ -114,25 +115,27 @@ const Navbar = () => {
           <X className="h-8 w-8" />
         </button>
         
-        <nav className="flex flex-col items-center space-y-6 p-8 mt-16 mb-16 overflow-y-auto">
-          {menuItems.map((item) => (
-            <a
-              key={item.title}
-              href={item.href}
-              className="text-xl font-medium wave-hover text-foreground hover:text-primary transition-colors"
+        <div className="flex flex-col justify-center h-full px-4">
+          <nav className="flex flex-col items-center space-y-6 py-8">
+            {menuItems.map((item) => (
+              <a
+                key={item.title}
+                href={item.href}
+                className="text-xl font-medium wave-hover text-foreground hover:text-primary transition-colors"
+                onClick={closeMenu}
+              >
+                {item.title}
+              </a>
+            ))}
+            <a 
+              href="#contact" 
+              className="cta-button gold-gradient hover:opacity-90 mt-4 w-full text-center"
               onClick={closeMenu}
             >
-              {item.title}
+              Book Now
             </a>
-          ))}
-          <a 
-            href="#contact" 
-            className="cta-button gold-gradient hover:opacity-90 mt-4 w-full text-center"
-            onClick={closeMenu}
-          >
-            Book Now
-          </a>
-        </nav>
+          </nav>
+        </div>
       </div>
     </header>
   );

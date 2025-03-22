@@ -9,6 +9,14 @@ const NewsletterForm = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const triggerEmailNotification = async () => {
+    try {
+      await supabase.functions.invoke('send-notification-email');
+    } catch (error) {
+      console.error('Error triggering email notification:', error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -20,6 +28,9 @@ const NewsletterForm = () => {
         .insert([{ email }]);
       
       if (error) throw error;
+      
+      // Trigger email notification
+      await triggerEmailNotification();
       
       toast({
         title: "Subscribed!",

@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 import BackgroundMusic from "@/components/ui/BackgroundMusic";
 
 // Import using URL to prevent build errors with audio files
-const backgroundMusicUrl = "/background-music.mp3";
+const backgroundMusicUrl = "/clarniet.mp3";
 
 const Index = () => {
   return (
