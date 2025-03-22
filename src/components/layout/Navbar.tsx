@@ -103,7 +103,7 @@ const Navbar = () => {
       <div 
         className={`fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } flex flex-col justify-center`}
+        } flex flex-col justify-center overflow-y-auto max-h-screen`}
       >
         {/* X Button to Close Menu */}
         <button 
@@ -114,12 +114,12 @@ const Navbar = () => {
           <X className="h-8 w-8" />
         </button>
         
-        <nav className="flex flex-col items-center space-y-8 p-8">
+        <nav className="flex flex-col items-center space-y-6 p-8 mt-16 mb-16 overflow-y-auto">
           {menuItems.map((item) => (
             <a
               key={item.title}
               href={item.href}
-              className="text-2xl font-medium wave-hover text-foreground hover:text-primary transition-colors"
+              className="text-xl font-medium wave-hover text-foreground hover:text-primary transition-colors"
               onClick={closeMenu}
             >
               {item.title}
@@ -127,7 +127,7 @@ const Navbar = () => {
           ))}
           <a 
             href="#contact" 
-            className="cta-button gold-gradient hover:opacity-90 mt-6 w-full text-center"
+            className="cta-button gold-gradient hover:opacity-90 mt-4 w-full text-center"
             onClick={closeMenu}
           >
             Book Now

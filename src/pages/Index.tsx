@@ -6,6 +6,10 @@ import Portfolio from "@/components/sections/Portfolio";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
+import BackgroundMusic from "@/components/ui/BackgroundMusic";
+
+// Import using URL to prevent build errors with audio files
+const backgroundMusicUrl = "/background-music.mp3";
 
 const Index = () => {
   return (
@@ -18,6 +22,7 @@ const Index = () => {
         <About />
         <Contact />
       </main>
+      <BackgroundMusic audioSrc={backgroundMusicUrl} autoplay={true} />
       <Footer />
     </div>
   );
